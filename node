@@ -1,0 +1,14 @@
+Knex:warning - sqlite does not support inserting default values. Set the `useNullAsDefault` flag to hide this warning. (see docs http://knexjs.org/#Builder-insert).
+
+
+  CredentialProvider tests
+    ✓ should provides credential
+    ✓ should throw error when identity is not found
+    ✓ should throw error when password is mismatched
+
+  Session Auth test suite
+    ✓ the credential should be stored in session when login success
+
+
+  4 passing (70ms)
+
