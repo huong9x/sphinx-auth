@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "sphinx": "^0.1.2",
     "verror": "^1.9.0"
   },
   "devDependencies": {
