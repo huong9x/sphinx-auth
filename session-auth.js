@@ -17,6 +17,11 @@ class SessionAuth {
        return this.session.get(this.credentialKey);
    }
    
+   forceLogin(credential) {
+       this.session.set(this.credentialKey, credential);
+       return this;
+   }
+   
    async login(username, password) {
        let foundCredential = await this.credentialProvider.provide(username, password);
        this.session.set(this.credentialKey, foundCredential);
