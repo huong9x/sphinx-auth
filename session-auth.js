@@ -1,7 +1,11 @@
 class SessionAuth {
-   constructor(sessionStorage, credentialProvider) {
-       this.sessionStorage = sessionStorage;
+   constructor(credentialProvider) {
        this.credentialProvider = credentialProvider;
+   }
+   
+   setSession(session) {
+       this.session = session;
+       return this;
    }
    
    setCredentialKey(credentialKey) {
@@ -9,9 +13,30 @@ class SessionAuth {
        return this;
    }
    
+   getCredential() {
+       return this.session.get(this.credentialKey);
+   }
+   
+   forceLogin(credential) {
+       this.session.set(this.credentialKey, credential);
+       return this;
+   }
+   
    async login(username, password) {
        let foundCredential = await this.credentialProvider.provide(username, password);
-       this.sessionStorage.set(this.credentialKey, foundCredential);
+       this.session.set(this.credentialKey, foundCredential);
+   }
+   
+   logout() {
+       this.session.unset(this.credentialKey);
+   }
+ 
+   guest() {
+       return ! this.check();
+   }
+   
+   check() {
+       return this.session.has(this.credentialKey);
    }
 }
 
