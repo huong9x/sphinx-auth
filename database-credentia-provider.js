@@ -1,5 +1,5 @@
-const VError = require('verror');
-const Credential = require('./credential');
+const VError        = require('verror');
+const Credential    = require('./credential');
 
 class DatabaseCredentialProvider {
     constructor(knex, hasher) {

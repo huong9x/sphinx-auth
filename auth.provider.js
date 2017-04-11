@@ -20,13 +20,15 @@ exports.boot = async(container) => {
     let authSession = await container.make('auth.session');
     let serializer = await container.make('serializer');
     
-    serializer.forType(Credential,
+    serializer.forType(
+        Credential,
         credential => {
             return {identity : credential.getIdentity(), payload : credential.getData()};
         },
         data => {
             return new Credential(data.identity).setData(data.payload);
-        });
+        }
+    );
     
     httpKernel.use(async(ctx, next) => {
         authSession.setSession(ctx.session);
